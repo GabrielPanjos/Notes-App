@@ -98,3 +98,9 @@ span {
     display: flex;
     align-items: center;
 }
+
+.bodyNota {
+    width: 100%;
+    height: 88.5%;
+    padding: 20px;
+}

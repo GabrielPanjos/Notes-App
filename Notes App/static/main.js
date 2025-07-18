@@ -1,3 +1,10 @@
+class Nota {
+    constructor(nota, concluido = false) {
+        this.nota = nota;
+        this.concluido = concluido;
+    }
+}
+
 const data = new Date()
 const diaMes = data.getDate()
 const pegarDiaSemana = data.getDay()
@@ -32,25 +39,25 @@ const horario = function () {
 
 
 switch (pegarDiaSemana) {
-    case 1:
+    case 0:
         diaSemana = "Dom"
         break;
-    case 2:
+    case 1:
         diaSemana = "Seg"
         break;
-    case 3:
+    case 2:
         diaSemana = "Ter"
         break;
-    case 4:
+    case 3:
         diaSemana = "Qua"
         break;
-    case 5:
+    case 4:
         diaSemana = "Qui"
         break;
-    case 6:
+    case 5:
         diaSemana = "Sex"
         break;
-    case 7:
+    case 6:
         diaSemana = "Sáb"
         break;
 }
@@ -105,6 +112,8 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
     headerNota.classList.add('header-nota')
 
     const bodyNota = document.createElement('div')
+    bodyNota.classList.add('bodyNota')
+    bodyNota.contentEditable = true
 
     const dataSpan = document.createElement('span')
     const iconsSpan = document.createElement('span')
@@ -117,6 +126,12 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
 
     const trash = document.createElement('i')
     trash.classList.add('fa-solid', 'fa-trash', 'cursor-pointer')
+    trash.addEventListener('click', function () {
+
+        if (confirm('Tem certeza que deseja remover essa nota?')) {
+            divNota.remove()
+        }
+    })
 
     document.getElementById('section-nota').appendChild(divNota)
     divNota.appendChild(headerNota)
@@ -130,8 +145,10 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
 
     dataSpan.innerHTML = `${diaSemana} ${diaMes} ${mes}, ${ano} as ${horario()}`
 
-
 })
 
 
 
+const salvarNota = function () {
+
+}

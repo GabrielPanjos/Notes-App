@@ -1,9 +1,22 @@
 class Nota {
-    constructor(nota, concluido = false) {
+    constructor(nota, data, idNota = id, concluido = false) {
         this.nota = nota;
+        this.data = data;
+        this.id = idNota;
         this.concluido = concluido;
     }
 }
+
+/* 
+localStorage.removeItem('ids')
+localStorage.removeItem('notas')
+*/
+
+let id = localStorage.getItem('ids') || 1
+
+let notas = JSON.parse(localStorage.getItem('notas')) || []
+
+console.log(notas)
 
 const data = new Date()
 const diaMes = data.getDate()
@@ -35,8 +48,6 @@ const horario = function () {
     }
 
 }
-
-
 
 switch (pegarDiaSemana) {
     case 0:
@@ -102,7 +113,6 @@ switch (pegarMes) {
 }
 
 
-
 document.getElementById('adicionarNota').addEventListener('click', function () {
 
     const divNota = document.createElement('div')
@@ -115,6 +125,7 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
     bodyNota.classList.add('bodyNota')
     bodyNota.contentEditable = true
 
+
     const dataSpan = document.createElement('span')
     const iconsSpan = document.createElement('span')
 
@@ -126,12 +137,7 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
 
     const trash = document.createElement('i')
     trash.classList.add('fa-solid', 'fa-trash', 'cursor-pointer')
-    trash.addEventListener('click', function () {
 
-        if (confirm('Tem certeza que deseja remover essa nota?')) {
-            divNota.remove()
-        }
-    })
 
     document.getElementById('section-nota').appendChild(divNota)
     divNota.appendChild(headerNota)
@@ -145,10 +151,102 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
 
     dataSpan.innerHTML = `${diaSemana} ${diaMes} ${mes}, ${ano} as ${horario()}`
 
+    const novaNota = new Nota(bodyNota.innerHTML, dataSpan.innerHTML, id)
+
+    bodyNota.addEventListener('input', function () {
+
+        salvarNota(novaNota)
+
+    })
+
+    trash.addEventListener('click', function () {
+
+        if (confirm('Tem certeza que deseja remover essa nota?')) {
+            divNota.remove()
+
+            notas = notas.filter(n => n.id !== nota.id)
+
+            localStorage.setItem('notas', JSON.stringify(notas))
+
+        }
+    })
+
+    id++
+    localStorage.setItem('ids', id)
+
 })
 
+const salvarNota = function (nota) {
 
+    const index = notas.findIndex(n => n.id === nota.id)
 
-const salvarNota = function () {
+    if (index !== -1) {
+        notas[index] = nota
+    } else {
+        notas.push(nota)
+    }
 
+    // Salva no localStorage
+    localStorage.setItem('notas', JSON.stringify(notas))
 }
+
+const atualizarPagina = function () {
+
+    notas.forEach((nota) => {
+
+        const divNota = document.createElement('div')
+        divNota.classList.add('nota')
+
+        const headerNota = document.createElement('div')
+        headerNota.classList.add('header-nota')
+
+        const bodyNota = document.createElement('div')
+        bodyNota.classList.add('bodyNota')
+        bodyNota.contentEditable = true
+
+        const dataSpan = document.createElement('span')
+        const iconsSpan = document.createElement('span')
+
+        const buttonCheck = document.createElement('button')
+        const buttonTrash = document.createElement('button')
+
+        const check = document.createElement('i')
+        check.classList.add('fa-solid', 'fa-check', 'cursor-pointer')
+
+        const trash = document.createElement('i')
+        trash.classList.add('fa-solid', 'fa-trash', 'cursor-pointer')
+
+
+        document.getElementById('section-nota').appendChild(divNota)
+        divNota.appendChild(headerNota)
+        divNota.appendChild(bodyNota)
+        headerNota.appendChild(dataSpan)
+        headerNota.appendChild(iconsSpan)
+        iconsSpan.appendChild(buttonCheck)
+        iconsSpan.appendChild(buttonTrash)
+        buttonCheck.appendChild(check)
+        buttonTrash.appendChild(trash)
+
+        dataSpan.innerHTML = nota.data
+        bodyNota.innerHTML = nota.nota
+
+        bodyNota.addEventListener('input', function () {
+
+            salvarNota(nota)
+
+        })
+
+        trash.addEventListener('click', function () {
+            if (confirm('Tem certeza que deseja remover essa nota?')) {
+                divNota.remove()
+
+                notas = notas.filter(n => n.id !== nota.id)
+
+                localStorage.setItem('notas', JSON.stringify(notas))
+
+            }
+        })
+    })
+}
+
+atualizarPagina()

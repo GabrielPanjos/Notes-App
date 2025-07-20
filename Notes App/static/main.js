@@ -155,6 +155,8 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
 
     bodyNota.addEventListener('input', function () {
 
+        novaNota.nota = bodyNota.innerHTML
+
         salvarNota(novaNota)
 
     })
@@ -185,6 +187,8 @@ const salvarNota = function (nota) {
     } else {
         notas.push(nota)
     }
+
+    console.log(notas)
 
     // Salva no localStorage
     localStorage.setItem('notas', JSON.stringify(notas))

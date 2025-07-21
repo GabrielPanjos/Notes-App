@@ -137,6 +137,28 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
 
     const check = document.createElement('i')
     check.classList.add('fa-solid', 'fa-check', 'cursor-pointer')
+    check.addEventListener('click', function () {
+
+        if (!novaNota.concluido) {
+
+            div_nota.style.opacity = "50%"
+
+            novaNota.concluido = true
+
+            salvarNota(novaNota)
+
+
+        } else if (novaNota.concluido) {
+
+            div_nota.style.opacity = "100%"
+
+            novaNota.concluido = false
+
+            salvarNota(novaNota)
+
+        }
+
+    })
 
     const trash = document.createElement('i')
     trash.classList.add('fa-solid', 'fa-trash', 'cursor-pointer')
@@ -366,9 +388,40 @@ const atualizarPagina = function () {
         changeColor.classList.add('colorButton', 'cursor-pointer')
 
 
-
         const check = document.createElement('i')
         check.classList.add('fa-solid', 'fa-check', 'cursor-pointer')
+        check.addEventListener('click', function () {
+
+            if (!nota.concluido) {
+
+                div_nota.style.opacity = "50%"
+
+                nota.concluido = true
+
+                salvarNota(nota)
+
+
+            } else if (nota.concluido) {
+
+                div_nota.style.opacity = "100%"
+
+                nota.concluido = false
+
+                salvarNota(nota)
+
+            }
+
+        })
+
+        if (!nota.concluido) {
+
+            div_nota.style.opacity = "100%"
+
+        } else if (nota.concluido) {
+
+            div_nota.style.opacity = "50%"
+
+        }
 
         const trash = document.createElement('i')
         trash.classList.add('fa-solid', 'fa-trash', 'cursor-pointer')
@@ -464,6 +517,7 @@ const atualizarPagina = function () {
             switch (cor) {
                 case 'verde':
                     divNota.style.backgroundColor = '#d4f4dd';
+                    changeColor.style.backgroundColor = '#d4f4dd';
                     headerNota.style.backgroundColor = '#aad4b5ff';
 
                     nota.cor = cor
@@ -471,6 +525,7 @@ const atualizarPagina = function () {
                     break;
                 case 'azul':
                     divNota.style.backgroundColor = '#d4e9f4';
+                    changeColor.style.backgroundColor = '#d4e9f4';
                     headerNota.style.backgroundColor = '#a4c9dcff';
 
                     nota.cor = cor
@@ -478,6 +533,7 @@ const atualizarPagina = function () {
                     break;
                 case 'amarelo':
                     divNota.style.backgroundColor = '#fff9cc';
+                    changeColor.style.backgroundColor = '#fff9cc';
                     headerNota.style.backgroundColor = '#e6da8bff';
 
                     nota.cor = cor
@@ -485,6 +541,7 @@ const atualizarPagina = function () {
                     break;
                 case 'vermelho':
                     divNota.style.backgroundColor = '#f8d7da';
+                    changeColor.style.backgroundColor = '#f8d7da';
                     headerNota.style.backgroundColor = '#dc9fa5ff';
 
                     nota.cor = cor
@@ -492,6 +549,7 @@ const atualizarPagina = function () {
                     break;
                 case 'roxo':
                     divNota.style.backgroundColor = '#e8ddf8';
+                    changeColor.style.backgroundColor = '#e8ddf8';
                     headerNota.style.backgroundColor = '#c5aceaff';
 
                     nota.cor = cor
@@ -499,6 +557,7 @@ const atualizarPagina = function () {
                     break;
                 case 'rosa':
                     divNota.style.backgroundColor = '#fcd5ce';
+                    changeColor.style.backgroundColor = '#fcd5ce';
                     headerNota.style.backgroundColor = '#e4a398ff';
 
                     nota.cor = cor
@@ -506,6 +565,7 @@ const atualizarPagina = function () {
                     break;
                 case 'laranja':
                     divNota.style.backgroundColor = '#ffe5b4';
+                    changeColor.style.backgroundColor = '#ffe5b4';
                     headerNota.style.backgroundColor = '#f5bc70ff';
 
                     nota.cor = cor
@@ -513,6 +573,7 @@ const atualizarPagina = function () {
                     break;
                 case 'branco':
                     divNota.style.backgroundColor = '#f8f7f7';
+                    changeColor.style.backgroundColor = '#f8f7f7';
                     headerNota.style.backgroundColor = '#e6e6e6';
 
                     nota.cor = cor
@@ -525,12 +586,8 @@ const atualizarPagina = function () {
             }
         }
 
-        changeColor.style.backgroundColor = trocarCor(nota.cor)
-
         bodyNota.innerHTML = nota.nota
         dataSpan.innerHTML = nota.data
-
-        changeColor.style.backgroundColor = trocarCor(nota.cor)
 
         bodyNota.addEventListener('input', function () {
 

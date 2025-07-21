@@ -109,6 +109,7 @@ span {
     width: 20px;
     height: 20px;
     border: solid 2px #747474;
+    background-color: #f8f7f7;
     box-shadow: 1px 1px 2px 0 #b6b6b6;
     margin-right: 10px;
 }

@@ -24,8 +24,8 @@ header {
 }
 
 header>h1 {
-    text-shadow: 1px 1px 0 rgb(223, 182, 93);
-    color: rgb(224, 158, 14);
+    text-shadow: 1px 1px 0 #dfb65d;
+    color: #e09e0e;
     padding-right: 100px;
 }
 
@@ -34,13 +34,13 @@ header>button {
     height: 35px;
     border-radius: 100%;
     border: none;
-    background-color: rgb(57, 179, 216);
+    background-color: #39b3d8;
     color: white;
     font-size: 35px;
 }
 
 header>button:hover {
-    background-color: rgb(47, 148, 179);
+    background-color: #2f94b3;
 }
 
 .cursor-pointer {
@@ -48,8 +48,8 @@ header>button:hover {
 }
 
 .nota {
-    box-shadow: 1px 1px 4px 0 rgb(136, 136, 136);
-    background-color: rgb(248, 247, 247);
+    box-shadow: 1px 1px 4px 0 #888888;
+    background-color: #f8f7f7;
     width: 560px;
     min-height: 340px;
     border-radius: 1px;
@@ -57,7 +57,7 @@ header>button:hover {
 }
 
 .header-nota {
-    background-color: rgb(230, 230, 230);
+    background-color: #e6e6e6;
     width: 100%;
     height: 40px;
     padding: 10px;
@@ -66,7 +66,7 @@ header>button:hover {
 }
 
 .header-nota>span {
-    color: rgb(57, 179, 216);
+    color: #39b3d8;
     font-size: 12px;
     margin-left: 5px;
     font-style: italic;
@@ -79,13 +79,13 @@ header>button:hover {
 
 .header-nota>span>button {
     border: none;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: #ffffff00;
 }
 
 .fa-check {
     margin-right: 10px;
     font-size: 20px;
-    text-shadow: 1px 0 2px rgb(57, 94, 57);
+    text-shadow: 1px 0 2px #395e39;
     color: lightgreen;
 }
 
@@ -103,4 +103,95 @@ span {
     width: 100%;
     height: 88.5%;
     padding: 20px;
+}
+
+.colorButton {
+    width: 20px;
+    height: 20px;
+    border: solid 2px #979797;
+    box-shadow: 1px 1px 2px 0 #b6b6b6;
+    margin-right: 10px;
+}
+
+.div-nota {
+    display: flex;
+    flex-direction: row;
+}
+
+.div-change-color {
+    width: 200px;
+    background-color: #f8f7f7;
+    box-shadow: 1px 1px 4px 0 #888888;
+    height: auto;
+    border-radius: 1px;
+    margin-bottom: 50px;
+    margin-left: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trocarCor {
+    background-color: black;
+    width: 60px;
+    height: 60px;
+    margin: 8px;
+}
+
+.esquerda {
+    display: flex;
+    flex-direction: column;
+}
+
+.direita {
+    display: flex;
+    flex-direction: column;
+}
+
+.verde {
+    background-color: #d0f2d0;
+    /* verde claro pastel */
+    box-shadow: 1px 1px 4px 0 #888888;
+}
+
+.azul {
+    background-color: #d0e8f2;
+    /* azul claro pastel */
+    box-shadow: 1px 1px 4px 0 #888888;
+}
+
+.amarelo {
+    background-color: #fff9cc;
+    /* amarelo suave */
+    box-shadow: 1px 1px 4px 0 #888888;
+}
+
+.vermelho {
+    background-color: #f8d0d0;
+    /* vermelho claro, tom rosado */
+    box-shadow: 1px 1px 4px 0 #888888;
+}
+
+.roxo {
+    background-color: #e3d1f7;
+    /* roxo lavanda claro */
+    box-shadow: 1px 1px 4px 0 #888888;
+}
+
+.rosa {
+    background-color: #fbd4e8;
+    /* rosa claro pastel */
+    box-shadow: 1px 1px 4px 0 #888888;
+}
+
+.laranja {
+    background-color: #ffe2c6;
+    /* laranja claro pastel */
+    box-shadow: 1px 1px 4px 0 #888888;
+}
+
+.branco {
+    background-color: #f8f7f7;
+    /* cinza bem clarinho */
+    box-shadow: 1px 1px 4px 0 #888888;
 }

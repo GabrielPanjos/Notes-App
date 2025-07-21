@@ -1,16 +1,12 @@
 class Nota {
-    constructor(nota, data, idNota = id, concluido = false) {
+    constructor(nota, data, idNota = id, cor = '#f8f7f7', concluido = false) {
         this.nota = nota;
         this.data = data;
         this.id = idNota;
+        this.cor = cor
         this.concluido = concluido;
     }
 }
-
-/* 
-localStorage.removeItem('ids')
-localStorage.removeItem('notas')
-*/
 
 let id = localStorage.getItem('ids') || 1
 
@@ -115,6 +111,9 @@ switch (pegarMes) {
 
 document.getElementById('adicionarNota').addEventListener('click', function () {
 
+    const div_nota = document.createElement('div')
+    div_nota.classList.add('div-nota')
+
     const divNota = document.createElement('div')
     divNota.classList.add('nota')
 
@@ -131,6 +130,12 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
 
     const buttonCheck = document.createElement('button')
     const buttonTrash = document.createElement('button')
+    const buttonColor = document.createElement('button')
+
+    const changeColor = document.createElement('div')
+    changeColor.classList.add('colorButton', 'cursor-pointer')
+    changeColor.style.backgroundColor = "#f8f7f7"
+
 
     const check = document.createElement('i')
     check.classList.add('fa-solid', 'fa-check', 'cursor-pointer')
@@ -139,15 +144,131 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
     trash.classList.add('fa-solid', 'fa-trash', 'cursor-pointer')
 
 
-    document.getElementById('section-nota').appendChild(divNota)
+    document.getElementById('section-nota').appendChild(div_nota)
+    div_nota.appendChild(divNota)
     divNota.appendChild(headerNota)
     divNota.appendChild(bodyNota)
     headerNota.appendChild(dataSpan)
     headerNota.appendChild(iconsSpan)
+    iconsSpan.appendChild(buttonColor)
     iconsSpan.appendChild(buttonCheck)
     iconsSpan.appendChild(buttonTrash)
+    buttonColor.appendChild(changeColor)
     buttonCheck.appendChild(check)
     buttonTrash.appendChild(trash)
+
+    const divChangeColor = document.createElement('div')
+    divChangeColor.classList.add('div-change-color')
+    divChangeColor.style.display = 'none'
+
+    const esquerda = document.createElement('div')
+    esquerda.classList.add('esquerda')
+
+    const direita = document.createElement('div')
+    direita.classList.add('direita')
+
+
+    div_nota.appendChild(divChangeColor)
+    divChangeColor.appendChild(esquerda)
+    divChangeColor.appendChild(direita)
+
+
+    const verde = document.createElement('div')
+    verde.classList.add('trocarCor', 'cursor-pointer', 'verde')
+    verde.addEventListener('click', () => trocarCor('verde'))
+
+    const azul = document.createElement('div')
+    azul.classList.add('trocarCor', 'cursor-pointer', 'azul')
+    azul.addEventListener('click', () => trocarCor('azul'))
+
+    const amarelo = document.createElement('div')
+    amarelo.classList.add('trocarCor', 'cursor-pointer', 'amarelo')
+    amarelo.addEventListener('click', () => trocarCor('amarelo'))
+
+    const vermelho = document.createElement('div')
+    vermelho.classList.add('trocarCor', 'cursor-pointer', 'vermelho')
+    vermelho.addEventListener('click', () => trocarCor('vermelho'))
+
+
+    const roxo = document.createElement('div')
+    roxo.classList.add('trocarCor', 'cursor-pointer', 'roxo')
+    roxo.addEventListener('click', () => trocarCor('roxo'))
+
+    const rosa = document.createElement('div')
+    rosa.classList.add('trocarCor', 'cursor-pointer', 'rosa')
+    rosa.addEventListener('click', () => trocarCor('rosa'))
+
+    const laranja = document.createElement('div')
+    laranja.classList.add('trocarCor', 'cursor-pointer', 'laranja')
+    laranja.addEventListener('click', () => trocarCor('laranja'))
+
+    const branco = document.createElement('div')
+    branco.classList.add('trocarCor', 'cursor-pointer', 'branco')
+    branco.addEventListener('click', () => trocarCor('branco'))
+
+
+    esquerda.appendChild(verde)
+    esquerda.appendChild(azul)
+    esquerda.appendChild(amarelo)
+    esquerda.appendChild(vermelho)
+
+    direita.appendChild(roxo)
+    direita.appendChild(rosa)
+    direita.appendChild(laranja)
+    direita.appendChild(branco)
+
+    changeColor.addEventListener('click', () => {
+
+        if (divChangeColor.style.display == 'none') {
+            divChangeColor.style.display = ''
+        } else if (divChangeColor.style.display == '') {
+            divChangeColor.style.display = 'none'
+        }
+
+    })
+
+    const trocarCor = function (cor) {
+
+        switch (cor) {
+            case 'verde':
+                divNota.style.backgroundColor = '#d4f4dd';
+                headerNota.style.backgroundColor = '#aad4b5ff';
+                break;
+            case 'azul':
+                divNota.style.backgroundColor = '#d4e9f4';
+                headerNota.style.backgroundColor = '#a4c9dcff';
+                break;
+            case 'amarelo':
+                divNota.style.backgroundColor = '#fff9cc';
+                headerNota.style.backgroundColor = '#e6da8bff';
+                break;
+            case 'vermelho':
+                divNota.style.backgroundColor = '#f8d7da';
+                headerNota.style.backgroundColor = '#dc9fa5ff';
+                break;
+            case 'roxo':
+                divNota.style.backgroundColor = '#e8ddf8';
+                headerNota.style.backgroundColor = '#c5aceaff';
+                break;
+            case 'rosa':
+                divNota.style.backgroundColor = '#fcd5ce';
+                headerNota.style.backgroundColor = '#e4a398ff';
+                break;
+            case 'laranja':
+                divNota.style.backgroundColor = '#ffe5b4';
+                headerNota.style.backgroundColor = '#f5bc70ff';
+                break;
+            case 'branco':
+                divNota.style.backgroundColor = '#f8f7f7';
+                headerNota.style.backgroundColor = '#e6e6e6';
+                break;
+            default:
+                console.warn('Cor não reconhecida:', cor);
+                break;
+        }
+
+
+    }
 
     dataSpan.innerHTML = `${diaSemana} ${diaMes} ${mes}, ${ano} as ${horario()}`
 
@@ -213,6 +334,10 @@ const atualizarPagina = function () {
 
         const buttonCheck = document.createElement('button')
         const buttonTrash = document.createElement('button')
+        const buttonColor = document.createElement('button')
+
+        const changeColor = document.createElement('div')
+        changeColor.classList.add('colorButton', 'cursor-pointer')
 
         const check = document.createElement('i')
         check.classList.add('fa-solid', 'fa-check', 'cursor-pointer')
@@ -226,8 +351,10 @@ const atualizarPagina = function () {
         divNota.appendChild(bodyNota)
         headerNota.appendChild(dataSpan)
         headerNota.appendChild(iconsSpan)
+        iconsSpan.appendChild(buttonColor)
         iconsSpan.appendChild(buttonCheck)
         iconsSpan.appendChild(buttonTrash)
+        buttonColor.appendChild(changeColor)
         buttonCheck.appendChild(check)
         buttonTrash.appendChild(trash)
 
@@ -252,5 +379,7 @@ const atualizarPagina = function () {
         })
     })
 }
+
+
 
 atualizarPagina()

@@ -1,5 +1,5 @@
 class Nota {
-    constructor(nota, data, idNota = id, cor = '#f8f7f7', concluido = false) {
+    constructor(nota, data, idNota = id, cor = 'branco', concluido = false) {
         this.nota = nota;
         this.data = data;
         this.id = idNota;
@@ -11,8 +11,6 @@ class Nota {
 let id = localStorage.getItem('ids') || 1
 
 let notas = JSON.parse(localStorage.getItem('notas')) || []
-
-console.log(notas)
 
 const data = new Date()
 const diaMes = data.getDate()
@@ -233,38 +231,63 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
             case 'verde':
                 divNota.style.backgroundColor = '#d4f4dd';
                 headerNota.style.backgroundColor = '#aad4b5ff';
+
+                novaNota.cor = cor
+                salvarNota(novaNota)
                 break;
             case 'azul':
                 divNota.style.backgroundColor = '#d4e9f4';
                 headerNota.style.backgroundColor = '#a4c9dcff';
+
+                novaNota.cor = cor
+                salvarNota(novaNota)
                 break;
             case 'amarelo':
                 divNota.style.backgroundColor = '#fff9cc';
                 headerNota.style.backgroundColor = '#e6da8bff';
+
+                novaNota.cor = cor
+                salvarNota(novaNota)
                 break;
             case 'vermelho':
                 divNota.style.backgroundColor = '#f8d7da';
                 headerNota.style.backgroundColor = '#dc9fa5ff';
+
+                novaNota.cor = cor
+                salvarNota(novaNota)
                 break;
             case 'roxo':
                 divNota.style.backgroundColor = '#e8ddf8';
                 headerNota.style.backgroundColor = '#c5aceaff';
+
+                novaNota.cor = cor
+                salvarNota(novaNota)
                 break;
             case 'rosa':
                 divNota.style.backgroundColor = '#fcd5ce';
                 headerNota.style.backgroundColor = '#e4a398ff';
+
+                novaNota.cor = cor
+                salvarNota(novaNota)
                 break;
             case 'laranja':
                 divNota.style.backgroundColor = '#ffe5b4';
                 headerNota.style.backgroundColor = '#f5bc70ff';
+
+                novaNota.cor = cor
+                salvarNota(novaNota)
                 break;
             case 'branco':
                 divNota.style.backgroundColor = '#f8f7f7';
                 headerNota.style.backgroundColor = '#e6e6e6';
+
+                novaNota.cor = cor
+                salvarNota(novaNota)
                 break;
             default:
                 console.warn('Cor não reconhecida:', cor);
                 break;
+
         }
 
 
@@ -286,6 +309,7 @@ document.getElementById('adicionarNota').addEventListener('click', function () {
 
         if (confirm('Tem certeza que deseja remover essa nota?')) {
             divNota.remove()
+            divChangeColor.remove()
 
             notas = notas.filter(n => n.id !== nota.id)
 
@@ -309,8 +333,6 @@ const salvarNota = function (nota) {
         notas.push(nota)
     }
 
-    console.log(notas)
-
     // Salva no localStorage
     localStorage.setItem('notas', JSON.stringify(notas))
 }
@@ -318,6 +340,9 @@ const salvarNota = function (nota) {
 const atualizarPagina = function () {
 
     notas.forEach((nota) => {
+
+        const div_nota = document.createElement('div')
+        div_nota.classList.add('div-nota')
 
         const divNota = document.createElement('div')
         divNota.classList.add('nota')
@@ -329,6 +354,7 @@ const atualizarPagina = function () {
         bodyNota.classList.add('bodyNota')
         bodyNota.contentEditable = true
 
+
         const dataSpan = document.createElement('span')
         const iconsSpan = document.createElement('span')
 
@@ -339,6 +365,8 @@ const atualizarPagina = function () {
         const changeColor = document.createElement('div')
         changeColor.classList.add('colorButton', 'cursor-pointer')
 
+
+
         const check = document.createElement('i')
         check.classList.add('fa-solid', 'fa-check', 'cursor-pointer')
 
@@ -346,7 +374,8 @@ const atualizarPagina = function () {
         trash.classList.add('fa-solid', 'fa-trash', 'cursor-pointer')
 
 
-        document.getElementById('section-nota').appendChild(divNota)
+        document.getElementById('section-nota').appendChild(div_nota)
+        div_nota.appendChild(divNota)
         divNota.appendChild(headerNota)
         divNota.appendChild(bodyNota)
         headerNota.appendChild(dataSpan)
@@ -358,18 +387,164 @@ const atualizarPagina = function () {
         buttonCheck.appendChild(check)
         buttonTrash.appendChild(trash)
 
-        dataSpan.innerHTML = nota.data
+        const divChangeColor = document.createElement('div')
+        divChangeColor.classList.add('div-change-color')
+        divChangeColor.style.display = 'none'
+
+        const esquerda = document.createElement('div')
+        esquerda.classList.add('esquerda')
+
+        const direita = document.createElement('div')
+        direita.classList.add('direita')
+
+
+        div_nota.appendChild(divChangeColor)
+        divChangeColor.appendChild(esquerda)
+        divChangeColor.appendChild(direita)
+
+
+        const verde = document.createElement('div')
+        verde.classList.add('trocarCor', 'cursor-pointer', 'verde')
+        verde.addEventListener('click', () => trocarCor('verde'))
+
+        const azul = document.createElement('div')
+        azul.classList.add('trocarCor', 'cursor-pointer', 'azul')
+        azul.addEventListener('click', () => trocarCor('azul'))
+
+        const amarelo = document.createElement('div')
+        amarelo.classList.add('trocarCor', 'cursor-pointer', 'amarelo')
+        amarelo.addEventListener('click', () => trocarCor('amarelo'))
+
+        const vermelho = document.createElement('div')
+        vermelho.classList.add('trocarCor', 'cursor-pointer', 'vermelho')
+        vermelho.addEventListener('click', () => trocarCor('vermelho'))
+
+
+        const roxo = document.createElement('div')
+        roxo.classList.add('trocarCor', 'cursor-pointer', 'roxo')
+        roxo.addEventListener('click', () => trocarCor('roxo'))
+
+        const rosa = document.createElement('div')
+        rosa.classList.add('trocarCor', 'cursor-pointer', 'rosa')
+        rosa.addEventListener('click', () => trocarCor('rosa'))
+
+        const laranja = document.createElement('div')
+        laranja.classList.add('trocarCor', 'cursor-pointer', 'laranja')
+        laranja.addEventListener('click', () => trocarCor('laranja'))
+
+        const branco = document.createElement('div')
+        branco.classList.add('trocarCor', 'cursor-pointer', 'branco')
+        branco.addEventListener('click', () => trocarCor('branco'))
+
+
+        esquerda.appendChild(verde)
+        esquerda.appendChild(azul)
+        esquerda.appendChild(amarelo)
+        esquerda.appendChild(vermelho)
+
+        direita.appendChild(roxo)
+        direita.appendChild(rosa)
+        direita.appendChild(laranja)
+        direita.appendChild(branco)
+
+        changeColor.addEventListener('click', () => {
+
+            if (divChangeColor.style.display == 'none') {
+                divChangeColor.style.display = ''
+            } else if (divChangeColor.style.display == '') {
+                divChangeColor.style.display = 'none'
+            }
+
+        })
+
+
+
+        const trocarCor = function (cor) {
+
+            switch (cor) {
+                case 'verde':
+                    divNota.style.backgroundColor = '#d4f4dd';
+                    headerNota.style.backgroundColor = '#aad4b5ff';
+
+                    nota.cor = cor
+                    salvarNota(nota)
+                    break;
+                case 'azul':
+                    divNota.style.backgroundColor = '#d4e9f4';
+                    headerNota.style.backgroundColor = '#a4c9dcff';
+
+                    nota.cor = cor
+                    salvarNota(nota)
+                    break;
+                case 'amarelo':
+                    divNota.style.backgroundColor = '#fff9cc';
+                    headerNota.style.backgroundColor = '#e6da8bff';
+
+                    nota.cor = cor
+                    salvarNota(nota)
+                    break;
+                case 'vermelho':
+                    divNota.style.backgroundColor = '#f8d7da';
+                    headerNota.style.backgroundColor = '#dc9fa5ff';
+
+                    nota.cor = cor
+                    salvarNota(nota)
+                    break;
+                case 'roxo':
+                    divNota.style.backgroundColor = '#e8ddf8';
+                    headerNota.style.backgroundColor = '#c5aceaff';
+
+                    nota.cor = cor
+                    salvarNota(nota)
+                    break;
+                case 'rosa':
+                    divNota.style.backgroundColor = '#fcd5ce';
+                    headerNota.style.backgroundColor = '#e4a398ff';
+
+                    nota.cor = cor
+                    salvarNota(nota)
+                    break;
+                case 'laranja':
+                    divNota.style.backgroundColor = '#ffe5b4';
+                    headerNota.style.backgroundColor = '#f5bc70ff';
+
+                    nota.cor = cor
+                    salvarNota(nota)
+                    break;
+                case 'branco':
+                    divNota.style.backgroundColor = '#f8f7f7';
+                    headerNota.style.backgroundColor = '#e6e6e6';
+
+                    nota.cor = cor
+                    salvarNota(nota)
+                    break;
+                default:
+                    console.warn('Cor não reconhecida:', cor);
+                    break;
+
+            }
+        }
+
+        changeColor.style.backgroundColor = trocarCor(nota.cor)
+
         bodyNota.innerHTML = nota.nota
+        dataSpan.innerHTML = nota.data
+
+        changeColor.style.backgroundColor = trocarCor(nota.cor)
 
         bodyNota.addEventListener('input', function () {
+
+            nota.nota = bodyNota.innerHTML
 
             salvarNota(nota)
 
         })
 
         trash.addEventListener('click', function () {
+
             if (confirm('Tem certeza que deseja remover essa nota?')) {
                 divNota.remove()
+                divChangeColor.remove()
 
                 notas = notas.filter(n => n.id !== nota.id)
 

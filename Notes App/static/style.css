@@ -108,7 +108,7 @@ span {
 .colorButton {
     width: 20px;
     height: 20px;
-    border: solid 2px #979797;
+    border: solid 2px #747474;
     box-shadow: 1px 1px 2px 0 #b6b6b6;
     margin-right: 10px;
 }
@@ -136,6 +136,7 @@ span {
     width: 60px;
     height: 60px;
     margin: 8px;
+    box-shadow: 1px 1px 4px 0 #888888;
 }
 
 .esquerda {
@@ -151,47 +152,39 @@ span {
 .verde {
     background-color: #d0f2d0;
     /* verde claro pastel */
-    box-shadow: 1px 1px 4px 0 #888888;
 }
 
 .azul {
     background-color: #d0e8f2;
     /* azul claro pastel */
-    box-shadow: 1px 1px 4px 0 #888888;
 }
 
 .amarelo {
     background-color: #fff9cc;
     /* amarelo suave */
-    box-shadow: 1px 1px 4px 0 #888888;
 }
 
 .vermelho {
     background-color: #f8d0d0;
     /* vermelho claro, tom rosado */
-    box-shadow: 1px 1px 4px 0 #888888;
 }
 
 .roxo {
     background-color: #e3d1f7;
     /* roxo lavanda claro */
-    box-shadow: 1px 1px 4px 0 #888888;
 }
 
 .rosa {
     background-color: #fbd4e8;
     /* rosa claro pastel */
-    box-shadow: 1px 1px 4px 0 #888888;
 }
 
 .laranja {
     background-color: #ffe2c6;
     /* laranja claro pastel */
-    box-shadow: 1px 1px 4px 0 #888888;
 }
 
 .branco {
     background-color: #f8f7f7;
     /* cinza bem clarinho */
-    box-shadow: 1px 1px 4px 0 #888888;
 }

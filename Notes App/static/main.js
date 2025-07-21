@@ -510,8 +510,6 @@ const atualizarPagina = function () {
 
         })
 
-
-
         const trocarCor = function (cor) {
 
             switch (cor) {
@@ -586,6 +584,8 @@ const atualizarPagina = function () {
             }
         }
 
+        trocarCor(nota.cor)
+
         bodyNota.innerHTML = nota.nota
         dataSpan.innerHTML = nota.data
 
@@ -612,6 +612,5 @@ const atualizarPagina = function () {
     })
 }
 
-
-
 atualizarPagina()
+
